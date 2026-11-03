@@ -157,44 +157,7 @@ footer{padding:26px 0 40px;color:var(--ink-3);font-size:14px;display:flex;flex-w
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
-/* форма заявки в финале: дублирует в почту и Telegram */
-.lead{display:grid;gap:10px;margin-top:22px;max-width:26rem}
-.lead input,.lead textarea{font:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
-.lead input::placeholder,.lead textarea::placeholder{color:var(--ink-3)}
-.lead textarea{resize:vertical;min-height:64px}
-.lead button{font:inherit;cursor:pointer;border:0}
-.lead small{font-size:13px;color:rgba(255,255,255,.75)}
-.lead .done{display:none;font-size:15px;color:#fff}
-.lead.sent input,.lead.sent textarea,.lead.sent button,.lead.sent small{display:none}
-.lead.sent .done{display:block}
-/* онлайн-ассистент */
-.ast{position:fixed;right:20px;bottom:20px;z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
-.ast-fab{width:56px;height:56px;border-radius:50%;border:0;background:var(--accent);color:#fff;font-size:24px;cursor:pointer;box-shadow:0 8px 24px rgb(0 0 0 / .25);display:grid;place-items:center}
-.ast-panel{width:min(340px,calc(100vw - 40px));background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 60px rgb(0 0 0 / .22);overflow:hidden;display:none}
-.ast.open .ast-panel{display:block}
-.ast-head{padding:14px 16px;background:var(--ink);color:#fff;font-weight:600;font-size:15px}
-.ast-head small{display:block;font-weight:400;font-size:12px;opacity:.75}
-.ast-log{height:260px;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--soft)}
-.ast-msg{max-width:85%;padding:10px 13px;border-radius:14px;font-size:14px;line-height:1.45;white-space:pre-line}
-.ast-msg.bot{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px;align-self:flex-start}
-.ast-msg.me{background:var(--accent);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
-.ast-chips{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
-.ast-chips button{font:inherit;font-size:13px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;cursor:pointer}
-.ast-chips button:hover{border-color:var(--accent)}
-.ast-foot{padding:10px 14px 14px}
-.ast-foot a{display:block;text-align:center}
-@media (max-width:640px){.ast{right:12px;bottom:12px}}
 </style>
-<!-- Яндекс.Метрика: создайте счётчик на metrika.yandex.ru для сайта lbt2401-design.github.io
-     и замените XXXXXX ниже на его номер. Цели: cta_telegram (клик «Написать»), lead_sent (отправка формы) -->
-<script type="text/javascript">
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],
-   k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
-   ym("XXXXXX","init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/XXXXXX" style="position:absolute;left:-9999px" alt=""></div></noscript>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -247,14 +210,6 @@ footer{padding:26px 0 40px;color:var(--ink-3);font-size:14px;display:flex;flex-w
       <h2 id="finalTitle">Покажу демо вашего сайта</h2>
       <p>Нажмите на мессенджер – сообщение уже набрано, останется отправить. Отвечаю в течение дня.</p>
       <div class="cta" data-cta></div>
-      <form class="lead" id="lead">
-        <input name="name" type="text" placeholder="Ваше имя" required autocomplete="name">
-        <input name="contact" type="text" placeholder="Телефон или Telegram" required>
-        <textarea name="msg" placeholder="Какой сайт нужен (необязательно)"></textarea>
-        <button class="btn btn-main" type="submit">Отправить заявку</button>
-        <small>Заявка придёт на почту lbt2401@gmail.com и продублируется в Telegram – сработает то, что быстрее.</small>
-        <span class="done">Заявка отправлена на почту и в Telegram – отвечу в течение дня.</span>
-      </form>
     </div>
     <div class="chat" aria-hidden="true">
       <div class="who"><span id="chatAva"></span><div><span id="chatName"></span><small>в сети</small></div></div>
@@ -266,18 +221,9 @@ footer{padding:26px 0 40px;color:var(--ink-3);font-size:14px;display:flex;flex-w
 </main>
 
 <footer class="wrap"><span id="foot"></span><span></span><span>Людмила · сайты для малого бизнеса</span></footer>
-<div class="ast" id="ast">
-  <div class="ast-panel" role="dialog" aria-label="Онлайн-ассистент">
-    <div class="ast-head">Ассистент Людмилы<small>отвечает мгновенно · живой ответ в Telegram</small></div>
-    <div class="ast-log" id="astLog"></div>
-    <div class="ast-chips" id="astChips"></div>
-    <div class="ast-foot"><a class="btn btn-main" href="https://t.me/lbtab" target="_blank" rel="noopener">Написать Людмиле в Telegram</a></div>
-  </div>
-  <button class="ast-fab" id="astFab" type="button" aria-label="Открыть ассистента">✦</button>
-</div>
 <div class="toast" id="toast" role="status"></div>
 
-<script id="data" type="application/json">{"name":"Людмила","city":"Россия","cityIn":"России","photo":"assets/photo.webp","palette":"В","messengers":{"telegram":"lbtab","whatsapp":"","max":""},"message":"Здравствуйте! Хочу заказать сайт. Посмотрел ваши работы на витрине – расскажите, как начать?","services":[{"title":"Одностраничный сайт для малого бизнеса","desc":"Сайт с почтой на вашем домене и формой заявок. Цена и сроки называются заранее, общение от первого разговора до запуска.","price":"от 5 000 ₽"},{"title":"Перенос сайта на Тильду","desc":"Переношу собранный сайт в Тильду: вы получаете страницу, которую сможете править сами.","price":"по запросу"},{"title":"Правки и доработки","desc":"Тексты, блоки, цены, новые разделы – после запуска решаем по договорённости.","price":"по запросу"}],"cases":[{"title":"Клинический психолог Пётр Суханов","niche":"психолог","city":"","url":"https://lbt2401-design.github.io/portfolio-psiholog/","kind":"demo","folder":"portfolio-psiholog","about":"Сайт-визитка психолога с записью на консультацию","desktop":"assets/case-localhost-4601-portfolio-psiholog-desktop.webp","mobile":"assets/case-localhost-4601-portfolio-psiholog-mobile.webp","task":"Выглядеть профессионально и записывать клиентов на консультацию без длинной переписки","did":"Сайт-визитка: услуги, подход, цены, кнопка записи. Адаптив под телефон"},{"title":"Чистый ремонт","niche":"ремонт квартир","city":"","url":"https://lbt2401-design.github.io/portfolio-remont/","kind":"demo","folder":"portfolio-remont","about":"Сайт бригады ремонта квартир по графику","desktop":"assets/case-localhost-4601-portfolio-remont-desktop.webp","mobile":"assets/case-localhost-4601-portfolio-remont-mobile.webp","task":"Доказать, что смета не растёт после подписания, и получать заявки с планом квартиры","did":"Сайт с графиком работ по неделям, кейсами «до/после» и формой заявки"},{"title":"Шинный двор","niche":"шиномонтаж","city":"","url":"https://lbt2401-design.github.io/portfolio-shinomontazh/","kind":"demo","folder":"portfolio-shinomontazh","about":"Сайт шиномонтажа: запись к своему времени","desktop":"assets/case-localhost-4601-portfolio-shinomontazh-desktop.webp","mobile":"assets/case-localhost-4601-portfolio-shinomontazh-mobile.webp","task":"Записывать клиентов к своему времени, а не по очереди","did":"Кинематографичный сайт в стиле «Кино»: онлайн-запись, цены, этапы работ"},{"title":"Шинный двор · Лайт","niche":"шиномонтаж","city":"","url":"https://lbt2401-design.github.io/portfolio-shinomontazh-lite/","kind":"demo","folder":"portfolio-shinomontazh-lite","about":"Лёгкая версия сайта шиномонтажа","desktop":"assets/case-localhost-4601-portfolio-shinomontazh-lite-desktop.webp","mobile":"assets/case-localhost-4601-portfolio-shinomontazh-lite-mobile.webp","task":"Тот же результат — проще, легче и доступнее","did":"Версия «Лайт»: прайс-доска, быстрая загрузка, удобна для переноса в Тильду"},{"title":"Свой дом","niche":"строительство домов","city":"","url":"https://lbt2401-design.github.io/portfolio-stroiteli/","kind":"demo","folder":"portfolio-stroiteli","about":"Сайт строителей каркасных домов и бань","desktop":"assets/case-localhost-4601-portfolio-stroiteli-desktop.webp","mobile":"assets/case-localhost-4601-portfolio-stroiteli-mobile.webp","task":"Показать этапы стройки и снять страх «смета вырастет, сроки сорвутся»","did":"Сайт по этапам от фундамента до сдачи: сроки, материалы, цены"},{"title":"Чистый лист","niche":"юрист","city":"","url":"https://lbt2401-design.github.io/portfolio-yurist/","kind":"demo","folder":"portfolio-yurist","about":"Сайт юриста по банкротству физических лиц","desktop":"assets/case-localhost-4601-portfolio-yurist-desktop.webp","mobile":"assets/case-localhost-4601-portfolio-yurist-mobile.webp","task":"Объяснить банкротство простым языком и собирать заявки на консультацию","did":"Сайт с пошаговым процессом, сроками и формой связи"},{"title":"На полях","niche":"репетитор","city":"","url":"https://lbt2401-design.github.io/repetitor-demo-kwork3268615/","kind":"demo","folder":"repetitor-demo","about":"Сайт репетитора для школьников и взрослых","desktop":"assets/case-localhost-4601-repetitor-demo-desktop.webp","mobile":"assets/case-localhost-4601-repetitor-demo-mobile.webp","task":"Записывать учеников на пробное занятие","did":"Тёплый сайт-визитка: программа, отзывы, кнопка пробного"},{"title":"Русский для иностранцев","niche":"школа языков","city":"","url":"https://lbt2401-design.github.io/russian-foreigners/","kind":"demo","folder":"russian-foreigners","about":"Сайт школы русского языка для иностранцев","desktop":"assets/case-localhost-4601-russian-foreigners-desktop.webp","mobile":"assets/case-localhost-4601-russian-foreigners-mobile.webp","task":"Принимать заявки в школу русского языка для иностранцев","did":"Лендинг: программы, уровни, цены, форма записи"},{"title":"Шоколад-сказка","niche":"кондитерская","city":"","url":"https://lbt2401-design.github.io/shokolad-skazka-demo/","kind":"demo","folder":"shokolad-demo","about":"Сайт шоколадных подарков ручной работы","desktop":"assets/case-localhost-4601-shokolad-demo-desktop.webp","mobile":"assets/case-localhost-4601-shokolad-demo-mobile.webp","task":"Продавать шоколадные подарки к праздникам","did":"Праздничный лендинг: вкусы, наборы, оформление заказа"},{"title":"СТОМИК","niche":"стоматология","city":"","url":"https://lbt2401-design.github.io/stomatologiya-demo-v2/","kind":"demo","folder":"stomatologiya-demo-v2","about":"Сайт стоматологической клиники","desktop":"assets/case-localhost-4601-stomatologiya-demo-v2-desktop.webp","mobile":"assets/case-localhost-4601-stomatologiya-demo-v2-mobile.webp","task":"Выглядеть клиникой, которой доверяют","did":"Сайт с услугами, врачами, ценами и онлайн-записью"}],"legal":{"status":"самозанятый","fio":"","inn":"","ogrnip":"","email":""}}</script>
+<script id="data" type="application/json">{"name":"Людмила","city":"Россия","cityIn":"России","photo":"assets/photo.webp","palette":"В","messengers":{"telegram":"lbtab","whatsapp":"","max":"","bot":"https://t.me/Lbtwebsitebot"},"message":"Здравствуйте! Хочу заказать сайт. Посмотрел ваши работы на витрине – расскажите, как начать?","services":[{"title":"Одностраничный сайт для малого бизнеса","desc":"Сайт с почтой на вашем домене и формой заявок. Цена и сроки называются заранее, общение от первого разговора до запуска.","price":"от 5 000 ₽"},{"title":"Перенос сайта на Тильду","desc":"Переношу собранный сайт в Тильду: вы получаете страницу, которую сможете править сами.","price":"по запросу"},{"title":"Правки и доработки","desc":"Тексты, блоки, цены, новые разделы – после запуска решаем по договорённости.","price":"по запросу"}],"cases":[{"title":"Клинический психолог Пётр Суханов","niche":"психолог","city":"","url":"https://lbt2401-design.github.io/portfolio-psiholog/","kind":"demo","folder":"portfolio-psiholog","about":"Сайт-визитка психолога с записью на консультацию","desktop":"assets/case-localhost-4601-portfolio-psiholog-desktop.webp","mobile":"assets/case-localhost-4601-portfolio-psiholog-mobile.webp","task":"Выглядеть профессионально и записывать клиентов на консультацию без длинной переписки","did":"Сайт-визитка: услуги, подход, цены, кнопка записи. Адаптив под телефон"},{"title":"Чистый ремонт","niche":"ремонт квартир","city":"","url":"https://lbt2401-design.github.io/portfolio-remont/","kind":"demo","folder":"portfolio-remont","about":"Сайт бригады ремонта квартир по графику","desktop":"assets/case-localhost-4601-portfolio-remont-desktop.webp","mobile":"assets/case-localhost-4601-portfolio-remont-mobile.webp","task":"Доказать, что смета не растёт после подписания, и получать заявки с планом квартиры","did":"Сайт с графиком работ по неделям, кейсами «до/после» и формой заявки"},{"title":"Шинный двор","niche":"шиномонтаж","city":"","url":"https://lbt2401-design.github.io/portfolio-shinomontazh/","kind":"demo","folder":"portfolio-shinomontazh","about":"Сайт шиномонтажа: запись к своему времени","desktop":"assets/case-localhost-4601-portfolio-shinomontazh-desktop.webp","mobile":"assets/case-localhost-4601-portfolio-shinomontazh-mobile.webp","task":"Записывать клиентов к своему времени, а не по очереди","did":"Кинематографичный сайт в стиле «Кино»: онлайн-запись, цены, этапы работ"},{"title":"Шинный двор · Лайт","niche":"шиномонтаж","city":"","url":"https://lbt2401-design.github.io/portfolio-shinomontazh-lite/","kind":"demo","folder":"portfolio-shinomontazh-lite","about":"Лёгкая версия сайта шиномонтажа","desktop":"assets/case-localhost-4601-portfolio-shinomontazh-lite-desktop.webp","mobile":"assets/case-localhost-4601-portfolio-shinomontazh-lite-mobile.webp","task":"Тот же результат — проще, легче и доступнее","did":"Версия «Лайт»: прайс-доска, быстрая загрузка, удобна для переноса в Тильду"},{"title":"Свой дом","niche":"строительство домов","city":"","url":"https://lbt2401-design.github.io/portfolio-stroiteli/","kind":"demo","folder":"portfolio-stroiteli","about":"Сайт строителей каркасных домов и бань","desktop":"assets/case-localhost-4601-portfolio-stroiteli-desktop.webp","mobile":"assets/case-localhost-4601-portfolio-stroiteli-mobile.webp","task":"Показать этапы стройки и снять страх «смета вырастет, сроки сорвутся»","did":"Сайт по этапам от фундамента до сдачи: сроки, материалы, цены"},{"title":"Чистый лист","niche":"юрист","city":"","url":"https://lbt2401-design.github.io/portfolio-yurist/","kind":"demo","folder":"portfolio-yurist","about":"Сайт юриста по банкротству физических лиц","desktop":"assets/case-localhost-4601-portfolio-yurist-desktop.webp","mobile":"assets/case-localhost-4601-portfolio-yurist-mobile.webp","task":"Объяснить банкротство простым языком и собирать заявки на консультацию","did":"Сайт с пошаговым процессом, сроками и формой связи"},{"title":"На полях","niche":"репетитор","city":"","url":"https://lbt2401-design.github.io/repetitor-demo-kwork3268615/","kind":"demo","folder":"repetitor-demo","about":"Сайт репетитора для школьников и взрослых","desktop":"assets/case-localhost-4601-repetitor-demo-desktop.webp","mobile":"assets/case-localhost-4601-repetitor-demo-mobile.webp","task":"Записывать учеников на пробное занятие","did":"Тёплый сайт-визитка: программа, отзывы, кнопка пробного"},{"title":"Русский для иностранцев","niche":"школа языков","city":"","url":"https://lbt2401-design.github.io/russian-foreigners/","kind":"demo","folder":"russian-foreigners","about":"Сайт школы русского языка для иностранцев","desktop":"assets/case-localhost-4601-russian-foreigners-desktop.webp","mobile":"assets/case-localhost-4601-russian-foreigners-mobile.webp","task":"Принимать заявки в школу русского языка для иностранцев","did":"Лендинг: программы, уровни, цены, форма записи"},{"title":"Шоколад-сказка","niche":"кондитерская","city":"","url":"https://lbt2401-design.github.io/shokolad-skazka-demo/","kind":"demo","folder":"shokolad-demo","about":"Сайт шоколадных подарков ручной работы","desktop":"assets/case-localhost-4601-shokolad-demo-desktop.webp","mobile":"assets/case-localhost-4601-shokolad-demo-mobile.webp","task":"Продавать шоколадные подарки к праздникам","did":"Праздничный лендинг: вкусы, наборы, оформление заказа"},{"title":"СТОМИК","niche":"стоматология","city":"","url":"https://lbt2401-design.github.io/stomatologiya-demo-v2/","kind":"demo","folder":"stomatologiya-demo-v2","about":"Сайт стоматологической клиники","desktop":"assets/case-localhost-4601-stomatologiya-demo-v2-desktop.webp","mobile":"assets/case-localhost-4601-stomatologiya-demo-v2-mobile.webp","task":"Выглядеть клиникой, которой доверяют","did":"Сайт с услугами, врачами, ценами и онлайн-записью"}],"legal":{"status":"самозанятый","fio":"","inn":"","ogrnip":"","email":""}}</script>
 <script>
 (() => {
   const D = JSON.parse(document.getElementById('data').textContent);
@@ -371,69 +317,6 @@ footer{padding:26px 0 40px;color:var(--ink-3);font-size:14px;display:flex;flex-w
   }), { threshold: .15 });
   document.querySelectorAll('.phone,.reveal').forEach((el) => io.observe(el));
   addEventListener('scroll', () => document.querySelector('.top').classList.toggle('scrolled', scrollY > 8), { passive: true });
-})();
-</script>
-<script>
-// форма заявки: дублирует на почту (formsubmit) и в Telegram
-(function () {
-  var form = document.getElementById('lead');
-  if (!form) return;
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var payload = {
-      _subject: 'Заявка с витрины (lbt2401-design.github.io)',
-      Имя: form.name.value.trim(),
-      'Телефон или Telegram': form.contact.value.trim(),
-      'Что нужно': form.msg.value.trim() || '–'
-    };
-    try {
-      fetch('https://formsubmit.co/ajax/lbt2401@gmail.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(payload)
-      }).catch(function () {});
-    } catch (err) {}
-    if (window.ym) { try { ym("XXXXXX", 'reachGoal', 'lead_sent'); } catch (err) {} }
-    form.classList.add('sent');
-    window.open('https://t.me/lbtab', '_blank', 'noopener');
-  });
-  // цель Метрики на клик по кнопке мессенджера
-  document.querySelectorAll('[data-cta] a').forEach(function (a) {
-    a.addEventListener('click', function () { if (window.ym) { try { ym("XXXXXX", 'reachGoal', 'cta_telegram'); } catch (err) {} } });
-  });
-})();
-</script>
-<script>
-// онлайн-ассистент: отвечает из данных витрины, сложное – отправляет к Людмиле
-(function () {
-  var root = document.getElementById('ast'), fab = document.getElementById('astFab'),
-      log = document.getElementById('astLog'), chips = document.getElementById('astChips');
-  if (!root) return;
-  var KB = [
-    ['Сколько стоит сайт?', 'Одностраничный сайт для малого бизнеса – от 5 000 ₽. Точную цену Людмила называет, когда увидит задачу: демо собирает бесплатно.'],
-    ['Сколько по времени?', 'Первое демо – в день обращения. Готовый сайт после согласования – обычно несколько дней, точный срок называется до начала работ.'],
-    ['Как проходит заказ?', 'Напишите в Telegram → Людмила собирает демо вашего сайта → вы смотрите → правим под вас → публикуем на вашем адресе. Платите, когда понравилось.'],
-    ['Что входит в цену?', 'Сайт с почтой на вашем домене и формой заявок. Правки по договорённости, перенос на Тильду – по запросу.'],
-    ['Работаете не в Москве?', 'Да, по всей России: общение в Telegram или WhatsApp, оплата переводом. Встречаться не нужно.'],
-    ['Покажите примеры', 'Десять работ в разных нишах – на витрине, раздел «Сайты, которые я сделала». Откройте любую по кнопке.']
-  ];
-  function say(text, me) {
-    var b = document.createElement('div');
-    b.className = 'ast-msg ' + (me ? 'me' : 'bot');
-    b.textContent = text;
-    log.appendChild(b); log.scrollTop = log.scrollHeight;
-  }
-  function chip(label, text) {
-    var c = document.createElement('button');
-    c.type = 'button'; c.textContent = label;
-    c.addEventListener('click', function () { say(label, true); setTimeout(function () { say(text); }, 350); });
-    chips.appendChild(c);
-  }
-  KB.forEach(function (p) { chip(p[0], p[1]); });
-  fab.addEventListener('click', function () {
-    var open = root.classList.toggle('open');
-    if (open && !log.children.length) say('Здравствуйте! Отвечаю мгновенно. Что интересует?');
-  });
 })();
 </script>
 </body>
